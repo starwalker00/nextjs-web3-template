@@ -6,6 +6,7 @@ function ProfileItem({ profile }) {
     let imageURI = profile[5];
     return (
         <WrapItem
+            alignItems="center"
             flexGrow="2"
             boxShadow='lightskyblue 0px 0px 9px 0px'
             background='teal'
@@ -24,9 +25,9 @@ function ProfileItem({ profile }) {
                 boxSize='150px'
                 objectFit='cover' />
             <Text p="2" letterSpacing="1px" fontWeight="bold" fontSize="md">
-                {profileId}
+                {profileId} -
             </Text>
-            <Text p="2" letterSpacing="1px" fontWeight="bold" fontSize="md">
+            <Text p="0" letterSpacing="1px" fontWeight="bold" fontSize="md">
                 {handle}
             </Text>
         </WrapItem >
