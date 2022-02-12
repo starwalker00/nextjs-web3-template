@@ -2,6 +2,7 @@ import { useAppContext } from '../state';
 import useSWRInfinite from "swr/infinite";
 import { Box, Button, ButtonGroup, Container, Wrap, Center } from '@chakra-ui/react'
 import ProfileItem from '../components/ProfileItem'
+import { Spinner } from '@chakra-ui/react'
 
 export default function ProfileList() {
     const { lensHub } = useAppContext();
@@ -41,8 +42,23 @@ export default function ProfileList() {
         getKey,
         fetcher
     );
-    if (error) return <div>failed to load{console.log(error)}</div>
-    if (!data) return <div>loading...</div>
+    if (error) return (
+        <Center>
+            Failed to load
+            {console.log(error)}
+        </Center>
+    )
+    if (!data) return (
+        <Center>
+            <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+            />
+        </Center>
+    )
     const results = data ? [].concat(...data) : [];
     return (
         <>
