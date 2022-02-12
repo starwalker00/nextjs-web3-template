@@ -23,7 +23,12 @@ function ProfileItem({ profile }) {
                 alt={imageURI}
                 borderRadius='full'
                 boxSize='150px'
-                objectFit='cover' />
+                objectFit='cover'
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = "150.png";
+                }}
+            />
             <Text p="2" letterSpacing="1px" fontWeight="bold" fontSize="md">
                 {profileId} -
             </Text>
