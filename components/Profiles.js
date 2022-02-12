@@ -13,7 +13,7 @@ export default function Profiles() {
         let profileId;
         let profiles = [];
         for (let profileIter = cursor; profileIter < cursor + profilePerCall; profileIter++) {
-            profileId = profileIter;
+            profileId = profileCount - profileIter;
             profile = await lensHub.getProfile(profileId);
             profile = [profileId, ...profile]
             profiles[profileIter] = profile;
