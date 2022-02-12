@@ -1,13 +1,18 @@
-import { Box, Center, Flex, Image, Text, WrapItem } from '@chakra-ui/react'
+import { Box, Center, Flex, Image, Text, WrapItem, VStack, Spacer } from '@chakra-ui/react'
 
 function ProfileItem({ profile }) {
     let profileId = profile[0];
+    let numberOfPosts = profile[1].toNumber();
     let handle = profile[4];
     let imageURI = profile[5];
+
+    console.log(profile)
     return (
         <WrapItem
             alignItems="center"
-            flexGrow="2"
+            justifyContent="center"
+            minW='xs'
+            flexGrow="1"
             boxShadow='lightskyblue 0px 0px 9px 0px'
             background='teal'
             color='white'
@@ -18,7 +23,7 @@ function ProfileItem({ profile }) {
             }
             }
         >
-            <Image p="2"
+            <Image p="4px 12px 4px 2px" m="2px 20px 2px 12px"
                 src={imageURI}
                 alt={imageURI}
                 borderRadius='full'
@@ -29,12 +34,19 @@ function ProfileItem({ profile }) {
                     currentTarget.src = "lens-protocol.png";
                 }}
             />
-            <Text p="2" letterSpacing="1px" fontWeight="bold" fontSize="md">
-                {profileId} -
-            </Text>
-            <Text p="0" letterSpacing="1px" fontWeight="bold" fontSize="md">
-                {handle}
-            </Text>
+            <VStack >
+                <Text p="0" letterSpacing="1px" fontWeight="normal" fontSize="md">
+                    {profileId}
+                </Text>
+                <Text p="2" letterSpacing="1px" fontWeight="bold" fontSize="md">
+                    {handle}
+                </Text>
+                {
+                    numberOfPosts > 0
+                        ? <Text p="0" letterSpacing="1px" fontSize="xs">{numberOfPosts} posts</Text>
+                        : <Text p="0" letterSpacing="1px" fontSize="xs">{numberOfPosts} post</Text>
+                }
+            </VStack>
         </WrapItem >
     )
 }
