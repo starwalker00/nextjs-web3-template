@@ -12,13 +12,13 @@ export default function ProfileList() {
         // console.log(`cursor  : ${JSON.stringify(cursor)}`)
         let profileCount = await lensHub.totalSupply();
         if (cursor == 999999) { cursor = profileCount.toNumber() };
-        console.log(`cursor  : ${JSON.stringify(cursor)}`)
+        // console.log(`cursor  : ${JSON.stringify(cursor)}`)
         // console.log(`profileCount  : ${JSON.stringify(profileCount)}`)
         let profile;
         let profiles = [];
         for (let profileId = cursor; profileId > cursor - profilePerCall; profileId--) {
             if (profileId > 0) {
-                console.log(`profileId  : ${JSON.stringify(profileId)}`)
+                // console.log(`profileId  : ${JSON.stringify(profileId)}`)
                 profile = await lensHub.getProfile(profileId);
                 profile = [profileId, ...profile]
                 profiles.push(profile);
