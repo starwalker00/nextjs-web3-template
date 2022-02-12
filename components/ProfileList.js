@@ -72,11 +72,19 @@ export default function ProfileList() {
                 }
             </Wrap>
             <Center m='10'>
-                <Button onClick={() => setSize(1)}>
-                    reset
+                <Button m='5'
+                    onClick={() => setSize(1)}
+                    colorScheme='teal' variant='solid'
+                >
+                    Reset
                 </Button>
-                <Button onClick={() => setSize(size + 1)}>
-                    load more
+                <Button m='5'
+                    onClick={() => setSize(size + 1)}
+                    colorScheme='teal' variant='solid'
+                    isLoading={isValidating}
+                    loadingText='Loading' spinnerPlacement='start'
+                >
+                    Load more
                 </Button>
             </Center>
         </>
