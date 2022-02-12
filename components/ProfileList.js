@@ -1,9 +1,11 @@
 import { useAppContext } from '../state';
 import useSWRInfinite from "swr/infinite";
+import { Box, Button, ButtonGroup, Container, Wrap, Center } from '@chakra-ui/react'
+import ProfileItem from '../components/ProfileItem'
 
-export default function Profiles() {
+export default function ProfileList() {
     const { lensHub } = useAppContext();
-    const profilePerCall = 10;
+    const profilePerCall = 9;
     const fetcher = async (cursor) => {
         console.log("fetcher");
         console.log(`cursor  : ${JSON.stringify(cursor)}`)
@@ -37,19 +39,25 @@ export default function Profiles() {
     if (!data) return <div>loading...</div>
     const results = data ? [].concat(...data) : [];
     return (
-        <div>
-            <button onClick={() => setSize(1)}>
-                reset
-            </button>
-            <button onClick={() => setSize(size + 1)}>
-                load more
-            </button>
-            <ul>
-                {(results.map((item, index) =>
-                    <li key={index}>{JSON.stringify(item)}</li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <Wrap spacing='5px' align='center' justify='center'>
+                {results &&
+                    results.map(
+                        (profile, index) => (
+                            <ProfileItem profile={profile} key={index} ></ProfileItem>
+                        )
+                    )
+                }
+            </Wrap>
+            <Center m='10'>
+                <Button onClick={() => setSize(1)}>
+                    reset
+                </Button>
+                <Button onClick={() => setSize(size + 1)}>
+                    load more
+                </Button>
+            </Center>
+        </>
     )
 
 }

@@ -1,11 +1,13 @@
-import '../styles/globals.css'
 import { AppWrapper } from '../state';
+import { ChakraProvider } from '@chakra-ui/react'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AppWrapper>
-      <Component {...pageProps} />
-    </AppWrapper>
+    <ChakraProvider>
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
+    </ChakraProvider>
   )
 }
 
