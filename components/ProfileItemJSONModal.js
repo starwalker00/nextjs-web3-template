@@ -22,7 +22,7 @@ function ProfileItemJSONModal({ profile }) {
                     <ModalHeader>getProfile() contract response</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Text>
+                        <Text >
                             {JSON.stringify(profile)}
                         </Text>
                     </ModalBody>
