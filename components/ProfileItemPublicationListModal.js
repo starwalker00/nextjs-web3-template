@@ -4,6 +4,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import useSWR from 'swr'
 import ProfileItemPublicationJSONModal from '../components/ProfileItemPublicationJSONModal'
 import { Grid, GridItem } from '@chakra-ui/react'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 
 import {
     Modal,
@@ -92,7 +93,7 @@ function ProfileItemPublicationListModal({ profile }) {
                                                 </Box>
                                                 <Box justifySelf='center' pb='10px'>
                                                     <Image
-                                                        src={post[2]}
+                                                        src={sanitizeUrl(post[2])}
                                                         borderRadius='2%'
                                                         maxH='300px'
                                                         onError={({ currentTarget }) => {

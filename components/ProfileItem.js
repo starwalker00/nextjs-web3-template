@@ -1,6 +1,7 @@
 import { Box, Center, Flex, Image, Text, WrapItem, VStack, HStack, Spacer } from '@chakra-ui/react'
 import ProfileItemJSONModal from '../components/ProfileItemJSONModal'
 import ProfileItemPublicationListModal from '../components/ProfileItemPublicationListModal'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 
 function ProfileItem({ profile }) {
     let profileId = profile[0];
@@ -27,8 +28,8 @@ function ProfileItem({ profile }) {
             }
         >
             <Image p="4px 12px 4px 2px" m="2px 20px 2px 12px"
-                src={imageURI}
-                alt={imageURI}
+                src={sanitizeUrl(imageURI)}
+                alt={sanitizeUrl(imageURI)}
                 borderRadius='full'
                 boxSize='150px'
                 objectFit='cover'
