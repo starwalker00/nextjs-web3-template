@@ -23,7 +23,7 @@ function ProfileItemPublicationJSONModal({ posts }) {
                 onClick={onOpen}>
                 JSON
             </Button>
-            <Modal size='full' isOpen={isOpen} onClose={onClose}>
+            <Modal size='4xl' isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
