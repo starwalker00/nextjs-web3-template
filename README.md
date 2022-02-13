@@ -2,6 +2,11 @@
 - swr example https://swr.vercel.app/examples/ssr)
 - https://chakra-ui.com/guides/getting-started/nextjs-guide
 
+### Mumbai contracts
+
+- [MockProfileCreationProxy Contract](https://mumbai.polygonscan.com/address/0x08C4fdC3BfF03ce4E284FBFE61ba820c23722540)
+- [LensHub Proxy Contract](https://mumbai.polygonscan.com/address/0xF6BF84E5df229029C9D36dC7ABaCDBE9c0bd7b4F)
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
