@@ -17,8 +17,13 @@ function ProfileItemJSONModal({ profile }) {
     const LensHubMumbaiContractURL = "https://mumbai.polygonscan.com/address/0xF6BF84E5df229029C9D36dC7ABaCDBE9c0bd7b4F";
     return (
         <>
-            <Button onClick={onOpen}>Open Modal</Button>
-
+            <Button
+                size='xs'
+                colorScheme='teal'
+                variant='solid'
+                onClick={onOpen}>
+                JSON
+            </Button>
             <Modal size='xl' isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

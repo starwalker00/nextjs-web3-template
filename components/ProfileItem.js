@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Image, Text, WrapItem, VStack, Spacer } from '@chakra-ui/react'
+import { Box, Center, Flex, Image, Text, WrapItem, VStack, HStack, Spacer } from '@chakra-ui/react'
 import ProfileItemJSONModal from '../components/ProfileItemJSONModal'
 
 function ProfileItem({ profile }) {
@@ -35,17 +35,17 @@ function ProfileItem({ profile }) {
                     currentTarget.src = "lens-protocol.png";
                 }}
             />
-            <VStack >
+            <VStack>
                 <Text p="0" letterSpacing="1px" fontWeight="normal" fontSize="md">
                     {profileId}
                 </Text>
-                <Text p="2" letterSpacing="1px" fontWeight="bold" fontSize="md">
+                <Text p="0" letterSpacing="1px" fontWeight="bold" fontSize="md">
                     {handle}
                 </Text>
                 {
                     numberOfPosts > 0
-                        ? <Text p="0" letterSpacing="1px" fontSize="xs">{numberOfPosts} posts</Text>
-                        : <Text p="0" letterSpacing="1px" fontSize="xs">{numberOfPosts} post</Text>
+                        ? <Text p="1" letterSpacing="1px" fontSize="xs">{numberOfPosts} posts</Text>
+                        : <Text p="1" letterSpacing="1px" fontSize="xs">{numberOfPosts} post</Text>
                 }
                 <ProfileItemJSONModal profile={profile} />
             </VStack>
