@@ -8,7 +8,7 @@ export default function ProfileList() {
     const { lensHub } = useAppContext();
     const profilePerCall = 9;
     const fetcher = async (cursor) => {
-        console.log("fetcher");
+        console.log("fetcher profile");
         // console.log(`cursor  : ${JSON.stringify(cursor)}`)
         let profileCount = await lensHub.totalSupply();
         if (cursor == 999999) { cursor = profileCount.toNumber() };

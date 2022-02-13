@@ -1,13 +1,14 @@
 import { Box, Center, Flex, Image, Text, WrapItem, VStack, HStack, Spacer } from '@chakra-ui/react'
 import ProfileItemJSONModal from '../components/ProfileItemJSONModal'
+import ProfileItemPublicationListModal from '../components/ProfileItemPublicationListModal'
 
 function ProfileItem({ profile }) {
     let profileId = profile[0];
-    let numberOfPosts = profile[1].toNumber();
+    // let numberOfPosts = profile[1].toNumber();
     let handle = profile[4];
     let imageURI = profile[5];
 
-    console.log(profile)
+    // console.log(profile)
     return (
         <WrapItem
             alignItems="center"
@@ -42,11 +43,7 @@ function ProfileItem({ profile }) {
                 <Text p="0" letterSpacing="1px" fontWeight="bold" fontSize="md">
                     {handle}
                 </Text>
-                {
-                    numberOfPosts > 0
-                        ? <Text p="1" letterSpacing="1px" fontSize="xs">{numberOfPosts} posts</Text>
-                        : <Text p="1" letterSpacing="1px" fontSize="xs">{numberOfPosts} post</Text>
-                }
+                <ProfileItemPublicationListModal profile={profile} />
                 <ProfileItemJSONModal profile={profile} />
             </VStack>
         </WrapItem >
