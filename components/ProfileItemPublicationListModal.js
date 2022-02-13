@@ -69,7 +69,7 @@ function ProfileItemPublicationListModal({ profile }) {
             </Button>
             <Modal size='3xl' isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent bg='cornsilk'>
+                <ModalContent bg='white'>
                     <ModalHeader>
                         getProfile() contract response - {profileId}{':'}{handle} - {data ? data.length : 0} publication(s)
                     </ModalHeader>
@@ -78,12 +78,13 @@ function ProfileItemPublicationListModal({ profile }) {
                         {error &&
                             <Text overflow='auto'>error{console.log(error)}</Text>
                         }
-                        <Grid spacing='15px' direction='column' gap={4}>
+                        <Grid direction='column'>
                             {data &&
                                 data.map(
                                     (post, index) => (
                                         <GridItem key={index}>
-                                            <VStack boxShadow='0px 0px 6px 0px lavender'>
+                                            {/* <VStack boxShadow='0px 0px 6px 0px lavender'> */}
+                                            <VStack border='1px solid #cccccc'>
                                                 <Box alignSelf='flex-start' ml='10px'>
                                                     <Text letterSpacing="1px" fontWeight="bold" fontSize="md" boxShadow='0px 4px 6px -6px #DA70D6'>
                                                         pubId : {index}
