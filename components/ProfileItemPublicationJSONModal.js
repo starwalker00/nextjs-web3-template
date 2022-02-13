@@ -31,7 +31,7 @@ function ProfileItemPublicationJSONModal({ posts }) {
                     </ModalHeader>
                     <ModalCloseButton colorScheme='teal' variant='solid' />
                     <ModalBody>
-                        <Text overflow='auto'>
+                        <Text as='div' overflow='auto'>
                             <JSONPretty id="json-pretty" data={JSON.stringify(posts)}></JSONPretty>
                         </Text>
                     </ModalBody>
