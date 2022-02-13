@@ -41,10 +41,10 @@ function ProfileItemPublicationListModal({ profile }) {
         let maxIter = min(MAX_POSTS, numberOfPosts);
         // for (let pubIter = 1; pubIter <= 1; pubIter++) {
         for (let pubIter = 1; pubIter <= maxIter; pubIter++) {
-            console.log(`pubIter  : ${JSON.stringify(pubIter)}`)
+            // console.log(`pubIter  : ${JSON.stringify(pubIter)}`)
             pub = await lensHub.getPub(profileId, pubIter)
             pubs.push(pub);
-            console.log(`pub  : ${JSON.stringify(pub)}`)
+            // console.log(`pub  : ${JSON.stringify(pub)}`)
         }
         return pubs;
     }
