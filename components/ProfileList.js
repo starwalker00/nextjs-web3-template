@@ -54,7 +54,7 @@ export default function ProfileList() {
                 thickness='4px'
                 speed='0.65s'
                 emptyColor='gray.200'
-                color='blue.500'
+                color='e3cfff'
                 size='xl'
             />
         </Center>

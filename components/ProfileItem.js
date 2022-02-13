@@ -13,11 +13,11 @@ function ProfileItem({ profile }) {
             justifyContent="center"
             minW='xs'
             flexGrow="1"
-            boxShadow='lightskyblue 0px 0px 9px 0px'
+            boxShadow='0px 0px 6px 0px #DA70D6'
             background='teal'
             color='white'
             _hover={{
-                background: "white",
+                background: "floralwhite",
                 color: "teal.500",
                 cursor: "pointer",
             }
