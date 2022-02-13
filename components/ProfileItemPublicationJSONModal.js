@@ -12,29 +12,27 @@ import {
 } from '@chakra-ui/react'
 import JSONPretty from 'react-json-pretty';
 
-function ProfileItemJSONModal({ profile }) {
+function ProfileItemPublicationJSONModal({ posts }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    let profileId = profile[0];
-    let handle = profile[4];
     return (
         <>
             <Button
-                size='xs'
                 colorScheme='teal'
                 variant='solid'
+                mr={3}
                 onClick={onOpen}>
                 JSON
             </Button>
-            <Modal size='xl' isOpen={isOpen} onClose={onClose}>
+            <Modal size='full' isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
-                        getProfile() contract response - {profileId}{':'}{handle}
+                        getPub() contract responses - {posts ? posts.length : 0} publication(s)
                     </ModalHeader>
                     <ModalCloseButton colorScheme='teal' variant='solid' />
                     <ModalBody>
                         <Text overflow='auto'>
-                            <JSONPretty id="json-pretty" data={JSON.stringify(profile)}></JSONPretty>
+                            <JSONPretty id="json-pretty" data={JSON.stringify(posts)}></JSONPretty>
                         </Text>
                     </ModalBody>
                     <ModalFooter>
@@ -48,4 +46,4 @@ function ProfileItemJSONModal({ profile }) {
     )
 }
 
-export default ProfileItemJSONModal
+export default ProfileItemPublicationJSONModal
