@@ -18,6 +18,7 @@ function ProfileItem({ profile }) {
             boxShadow='0px 0px 6px 0px #DA70D6'
             background='teal'
             color='white'
+            transition='0.3s'
             _hover={{
                 background: "floralwhite",
                 color: "teal.500",
