@@ -15,7 +15,7 @@ const hasStrings = (input) => {
 const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
     // console.log(`pageIndex  : ${JSON.stringify(pageIndex)}`)
     // console.log(`previousPageData  : ${JSON.stringify(previousPageData)}`)
-    console.log(`searchValue  : ${JSON.stringify(searchValue)}`)
+    // console.log(`searchValue  : ${JSON.stringify(searchValue)}`)
 
     let cursor // is the first profileId to be newly fetched
     if (searchValue) { // user searched for a profileId
@@ -28,7 +28,7 @@ const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
     } else { // initial loading or reset
         cursor = null
     }
-    console.log(`cursor  : ${JSON.stringify(cursor)}`)
+    // console.log(`cursor  : ${JSON.stringify(cursor)}`)
     return [cursor, PAGE_SIZE]
     // return searchValue
 }
@@ -40,11 +40,13 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
     const [searchValue, setSearchValue] = useState(null)
     const [val, setVal] = useState(null)
     const [updatedProfileTotalSupply, setProfileTotalSupply] = useState(profileTotalSupply)
+    const [isSearching, setIsSearching] = useState(false)
+
     const { lensHub } = useAppContext()
 
     const fetcher = async (cursor, pageSize) => {
         console.log("fetcher profile");
-        console.log(`cursor  : ${JSON.stringify(cursor)}`)
+        // console.log(`cursor  : ${JSON.stringify(cursor)}`)
         let profileTotalSupply = await lensHub.totalSupply();
         setProfileTotalSupply(profileTotalSupply.toNumber())
         if (!cursor) { // set cursor value to max profileId if not provided
@@ -77,6 +79,7 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
             // console.log(`profiles  : ${JSON.stringify(profiles)}`)
         }
         // console.log(`profiles  : ${JSON.stringify(profiles)}`)
+        setIsSearching(false)
         return profiles
     }
 
@@ -133,9 +136,10 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
                         onClick={() => {
                             setSearchValue(val)
                             setSize(1)
+                            setIsSearching(true)
                         }}
                         colorScheme='teal' variant='solid'
-                        isLoading={isValidating}
+                        isLoading={isSearching}
                         loadingText='Loading' spinnerPlacement='start'
                     >
                         SEARCH
