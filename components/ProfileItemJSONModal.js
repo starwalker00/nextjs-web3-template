@@ -33,7 +33,7 @@ function ProfileItemJSONModal({ profile }) {
                     </ModalHeader>
                     <ModalCloseButton colorScheme='teal' variant='solid' />
                     <ModalBody>
-                        <Text overflow='auto'>
+                        <Text as='div' overflow='auto'>
                             <JSONPretty id="json-pretty" data={JSON.stringify(profile)}></JSONPretty>
                         </Text>
                     </ModalBody>
