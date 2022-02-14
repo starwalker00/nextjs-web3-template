@@ -53,7 +53,8 @@ export default function ProfileList({ fallbackData }) {
         //     fallbackData: [[[424, 4, "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "teaismyname", "https://ipfs.io/ipfs/bafkreielgktcju7d5fhrp2qjyz42eceub36jieu6763krit4typwloyzvm", "https://ipfs.io/ipfs/bafkreifqovlwobdqouswjjqfop6hxterpxvyykaxcjkybcsc3q7n4uw5ua"], [41, 3, "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "tiltedsquare", "https://ipfs.io/ipfs/bafkreifkmgarpjlu2yyjcdetakuext4nogmk72j4grkm2o6b4jnxsmtwou", "https://ipfs.io/ipfs/bafkreigkkm5mciwfbz7q25frwglpyqu2onmdxhyyjtureyjvzqkcobosje"]]]
         // }
         {
-            fallbackData: fallbackData
+            fallbackData: fallbackData,
+            revalidateOnMount: true
         }
     );
     if (error) return (
