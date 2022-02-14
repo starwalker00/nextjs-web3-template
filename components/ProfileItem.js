@@ -66,7 +66,7 @@ function ProfileItem({ profile }) {
         >
             <Image p="4px 12px 4px 2px" m="2px 20px 2px 12px" color='blue'
                 src={imageURI}
-                alt={imageURI}
+                alt='imageURI'
                 borderRadius='full'
                 boxSize='150px'
                 objectFit='cover'
