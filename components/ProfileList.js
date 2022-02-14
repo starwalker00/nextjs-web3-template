@@ -10,7 +10,8 @@ const PAGE_SIZE = 9
 
 const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
     console.log(`pageIndex  : ${JSON.stringify(pageIndex)}`)
-    // pageIndex is not incremented properly on first call, idk why, 2 clicks needed on `load more` for 2nd page
+    console.log(`previousPageData  : ${JSON.stringify(previousPageData)}`)
+    console.log(`searchValue  : ${JSON.stringify(searchValue)}`)
 
     let cursor // is the first profileId to be newly fetched
     if (searchValue) { // user searched for a profileId
@@ -91,7 +92,6 @@ export default function ProfileList({ fallbackData }) {
             {/* <Box onLoad={() => setSize(size + 1)} d='none'></Box> */}
             <Flex wrap='wrap' justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6'>
                 <Input
-
                     width='50%'
                     value={val}
                     onChange={(e) => setVal(e.target.value)}
@@ -99,7 +99,7 @@ export default function ProfileList({ fallbackData }) {
                 />
                 <Button m='3'
                     onClick={() => {
-                        setSearchValue(val);
+                        setSearchValue(val)
                         setSize(1)
                     }}
                     colorScheme='teal' variant='solid'
