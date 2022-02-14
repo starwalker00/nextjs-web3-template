@@ -2,6 +2,7 @@
 - swr example https://swr.vercel.app/examples/ssr
 - https://chakra-ui.com/guides/getting-started/nextjs-guide
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- https://swr.vercel.app/examples/infinite-loading
 - [complex useswrinfinite example](https://github.com/vercel/swr/blob/72a54800662360e0c1f370e3fb32ee4f70020033/examples/infinite-scroll/pages/index.js)
 
 ### Mumbai contracts

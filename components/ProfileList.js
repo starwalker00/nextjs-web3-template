@@ -38,7 +38,7 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
     // console.log(`profileTotalSupply  : ${JSON.stringify(profileTotalSupply)}`)
 
     const [searchValue, setSearchValue] = useState(null)
-    const [val, setVal] = useState(null)
+    const [val, setVal] = useState('')
     const [updatedProfileTotalSupply, setProfileTotalSupply] = useState(profileTotalSupply)
     const [isSearching, setIsSearching] = useState(false)
 
@@ -61,8 +61,8 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
             // has strings, get profileId by handle
             cursor = await lensHub.getProfileIdByHandle(cursor);
             cursor = cursor.toNumber()
-            // console.log(`cursor  : ${JSON.stringify(cursor)}`)
         }
+        console.log(`cursor before loop : ${JSON.stringify(cursor)}`)
         // main profile fetching loop
         let profile
         let profiles = []
