@@ -36,7 +36,7 @@ const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
 export default function ProfileList({ fallbackData }) {
     // console.log(`fallbackData  : ${JSON.stringify(fallbackData)}`)
     const [searchValue, setSearchValue] = useState(null)
-    const [val, setVal] = useState(26)
+    const [val, setVal] = useState(null)
     const { lensHub } = useAppContext()
 
     const fetcher = async (cursor, pageSize) => {
