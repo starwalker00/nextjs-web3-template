@@ -116,35 +116,41 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
                     </Text>
                 </Box>
             </Flex>
-            <Flex wrap='wrap' justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6'>
-                <Input
-                    width='50%'
-                    letterSpacing='.1rem'
-                    value={val}
-                    onChange={(e) => setVal(e.target.value)}
-                    placeholder="profileId or handle"
-                />
-                <Button m='3'
-                    onClick={() => {
-                        setSearchValue(val)
-                        setSize(1)
-                    }}
-                    colorScheme='teal' variant='solid'
-                    isLoading={isValidating}
-                    loadingText='Loading' spinnerPlacement='start'
-                >
-                    SEARCH
-                </Button>
-                <Button m='3'
-                    onClick={() => {
-                        setSearchValue(null)
-                        setSize(1)
-                    }}
-                    colorScheme='teal' variant='solid'
-                >
-                    Go to last profile
-                </Button>
-            </Flex>
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                }}>
+                <Flex wrap='wrap' justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6'>
+                    <Input
+                        width='50%'
+                        letterSpacing='.1rem'
+                        value={val}
+                        onChange={(e) => setVal(e.target.value)}
+                        placeholder="profileId or handle"
+                    />
+                    <Button m='3'
+                        type="submit"
+                        onClick={() => {
+                            setSearchValue(val)
+                            setSize(1)
+                        }}
+                        colorScheme='teal' variant='solid'
+                        isLoading={isValidating}
+                        loadingText='Loading' spinnerPlacement='start'
+                    >
+                        SEARCH
+                    </Button>
+                    <Button m='3'
+                        onClick={() => {
+                            setSearchValue(null)
+                            setSize(1)
+                        }}
+                        colorScheme='teal' variant='solid'
+                    >
+                        Go to last profile
+                    </Button>
+                </Flex>
+            </form>
             <Wrap spacing='5px' align='center' justify='center'>
                 {results &&
                     results.map(
