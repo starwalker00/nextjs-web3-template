@@ -109,9 +109,9 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
     return (
         <>
             {/* <Box onLoad={() => setSize(size + 1)} d='none'></Box> */}
-            <Flex justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 1px 0px #DA70D6' p='2'>
+            <Flex justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6' p='2'>
                 <Box>
-                    <Text>
+                    <Text fontSize='lg' m="10px" letterSpacing='.15rem'>
                         Total number of profiles : {updatedProfileTotalSupply}
                     </Text>
                 </Box>
@@ -119,6 +119,7 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
             <Flex wrap='wrap' justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6'>
                 <Input
                     width='50%'
+                    letterSpacing='.1rem'
                     value={val}
                     onChange={(e) => setVal(e.target.value)}
                     placeholder="profileId or handle"
