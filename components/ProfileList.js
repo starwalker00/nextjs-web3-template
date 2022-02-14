@@ -7,10 +7,14 @@ import { ethers } from 'ethers';
 import { useState } from 'react';
 
 const PAGE_SIZE = 9
+const hasStrings = (input) => {
+    let regExp = /[a-zA-Z]/g
+    return regExp.test(input)
+}
 
 const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
-    console.log(`pageIndex  : ${JSON.stringify(pageIndex)}`)
-    console.log(`previousPageData  : ${JSON.stringify(previousPageData)}`)
+    // console.log(`pageIndex  : ${JSON.stringify(pageIndex)}`)
+    // console.log(`previousPageData  : ${JSON.stringify(previousPageData)}`)
     console.log(`searchValue  : ${JSON.stringify(searchValue)}`)
 
     let cursor // is the first profileId to be newly fetched
@@ -41,6 +45,17 @@ export default function ProfileList({ fallbackData }) {
         let profileTotalSupply = await lensHub.totalSupply();
         if (!cursor) { // set cursor value to max profileId if not provided
             cursor = profileTotalSupply.toNumber()
+        }
+        if (ethers.BigNumber.isBigNumber(cursor)) {
+            cursor = cursor.toNumber()
+        }
+        // profileId (number) or handle (string)
+        if (hasStrings(cursor)) {
+            console.log(`hasStrings`)
+            // has strings, get profileId by handle
+            cursor = await lensHub.getProfileIdByHandle(cursor);
+            cursor = cursor.toNumber()
+            // console.log(`cursor  : ${JSON.stringify(cursor)}`)
         }
         // main profile fetching loop
         let profile
@@ -95,7 +110,7 @@ export default function ProfileList({ fallbackData }) {
                     width='50%'
                     value={val}
                     onChange={(e) => setVal(e.target.value)}
-                    placeholder="26"
+                    placeholder="profileId or handle"
                 />
                 <Button m='3'
                     onClick={() => {
