@@ -33,21 +33,16 @@ export async function getStaticProps() {
   // `getStaticProps` is executed on the server side.
   const provider = new ethers.providers.AlchemyProvider("maticmum");
   const lensHub = new ethers.Contract(addresses.lensHubProxy, abis.lensHubProxy, provider);
-  let profilePerCall = 9;
+  let pageSize = 9;
   let profileTotalSupply = await lensHub.totalSupply();
   let profile;
   let profiles = [];
   let cursor = profileTotalSupply.toNumber()
-  profilePerCall = profilePerCall > profileTotalSupply.toNumber() ? profileTotalSupply.toNumber() : profilePerCall;
-  for (let profileId = cursor; profileId > cursor - profilePerCall; profileId--) {
-    if (profileId > 0) {
-      profile = await lensHub.getProfile(profileId);
-      profile = [profileId, ...profile]
-      profile[1] = profile[1].toNumber(); // convert toNumber to properly serialize when passing props in fallbackData
-      profiles.push(profile);
-    } else {
-      break;
-    }
+  for (let profileId = cursor; (profileId > cursor - pageSize) && profileId > 0; profileId--) {
+    profile = await lensHub.getProfile(profileId);
+    profile = [profileId, ...profile]
+    profile[1] = profile[1].toNumber(); // convert toNumber to properly serialize when passing props in fallbackData
+    profiles.push(profile);
   }
   // console.log(`fallbackData profiles  : ${JSON.stringify(profiles)}`)
   return {
