@@ -5,7 +5,7 @@ import ProfileList from '../components/ProfileList'
 import { addresses, abis } from '../contracts';
 import { ethers } from 'ethers';
 
-export default function Home({ fallbackData }) {
+export default function Home({ fallbackData, profileTotalSupply }) {
   return (
     <Container maxWidth='container.lg' m="20px auto">
       <Head>
@@ -24,7 +24,7 @@ export default function Home({ fallbackData }) {
           </Link>
         </Text>
       </Box>
-      <ProfileList fallbackData={fallbackData} />
+      <ProfileList fallbackData={fallbackData} profileTotalSupply={profileTotalSupply} />
     </Container >
   )
 }
@@ -48,6 +48,7 @@ export async function getStaticProps() {
   return {
     props: {
       fallbackData: [profiles],
+      profileTotalSupply: cursor
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

@@ -1,6 +1,6 @@
 import { useAppContext } from '../state';
 import useSWRInfinite from "swr/infinite";
-import { Box, Button, ButtonGroup, Container, Wrap, Center, Input, Flex } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Container, Wrap, Center, Input, Flex, Text } from '@chakra-ui/react'
 import ProfileItem from '../components/ProfileItem'
 import { Spinner } from '@chakra-ui/react'
 import { ethers } from 'ethers';
@@ -33,16 +33,20 @@ const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
     // return searchValue
 }
 
-export default function ProfileList({ fallbackData }) {
+export default function ProfileList({ fallbackData, profileTotalSupply }) {
     // console.log(`fallbackData  : ${JSON.stringify(fallbackData)}`)
+    // console.log(`profileTotalSupply  : ${JSON.stringify(profileTotalSupply)}`)
+
     const [searchValue, setSearchValue] = useState(null)
     const [val, setVal] = useState(null)
+    const [updatedProfileTotalSupply, setProfileTotalSupply] = useState(profileTotalSupply)
     const { lensHub } = useAppContext()
 
     const fetcher = async (cursor, pageSize) => {
         console.log("fetcher profile");
         console.log(`cursor  : ${JSON.stringify(cursor)}`)
         let profileTotalSupply = await lensHub.totalSupply();
+        setProfileTotalSupply(profileTotalSupply.toNumber())
         if (!cursor) { // set cursor value to max profileId if not provided
             cursor = profileTotalSupply.toNumber()
         }
@@ -105,6 +109,13 @@ export default function ProfileList({ fallbackData }) {
     return (
         <>
             {/* <Box onLoad={() => setSize(size + 1)} d='none'></Box> */}
+            <Flex justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 1px 0px #DA70D6' p='2'>
+                <Box>
+                    <Text>
+                        Total number of profiles : {updatedProfileTotalSupply}
+                    </Text>
+                </Box>
+            </Flex>
             <Flex wrap='wrap' justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6'>
                 <Input
                     width='50%'
