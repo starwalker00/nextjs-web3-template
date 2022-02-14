@@ -45,9 +45,9 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
     const { lensHub } = useAppContext()
 
     const fetcher = async (cursor, pageSize) => {
-        console.log("fetcher profile");
+        console.log("fetcher profile")
         // console.log(`cursor  : ${JSON.stringify(cursor)}`)
-        let profileTotalSupply = await lensHub.totalSupply();
+        let profileTotalSupply = await lensHub.totalSupply()
         setProfileTotalSupply(profileTotalSupply.toNumber())
         if (!cursor) { // set cursor value to max profileId if not provided
             cursor = profileTotalSupply.toNumber()
@@ -59,7 +59,7 @@ export default function ProfileList({ fallbackData, profileTotalSupply }) {
         if (hasStrings(cursor)) {
             console.log(`hasStrings`)
             // has strings, get profileId by handle
-            cursor = await lensHub.getProfileIdByHandle(cursor);
+            cursor = await lensHub.getProfileIdByHandle(cursor.toLowerCase());
             cursor = cursor.toNumber()
         }
         console.log(`cursor before loop : ${JSON.stringify(cursor)}`)
