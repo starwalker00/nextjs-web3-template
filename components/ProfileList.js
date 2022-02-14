@@ -1,6 +1,6 @@
 import { useAppContext } from '../state';
 import useSWRInfinite from "swr/infinite";
-import { Box, Button, ButtonGroup, Container, Wrap, Center } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Container, Wrap, Center, Input, Flex } from '@chakra-ui/react'
 import ProfileItem from '../components/ProfileItem'
 import { Spinner } from '@chakra-ui/react'
 import { ethers } from 'ethers';
@@ -31,7 +31,8 @@ const getKey = (pageIndex, previousPageData, searchValue, pageSize) => {
 export default function ProfileList({ fallbackData }) {
     // console.log(`fallbackData  : ${JSON.stringify(fallbackData)}`)
     const [searchValue, setSearchValue] = useState(null)
-    const { lensHub } = useAppContext();
+    const [val, setVal] = useState(26)
+    const { lensHub } = useAppContext()
 
     const fetcher = async (cursor, pageSize) => {
         console.log("fetcher profile");
@@ -88,15 +89,35 @@ export default function ProfileList({ fallbackData }) {
     return (
         <>
             {/* <Box onLoad={() => setSize(size + 1)} d='none'></Box> */}
-            <Button m='5'
-                onClick={() => {
-                    setSearchValue(26);
-                    setSize(1)
-                }}
-                colorScheme='teal' variant='solid'
-            >
-                SET
-            </Button>
+            <Flex wrap='wrap' justifyContent='space-evenly' alignItems='center' boxShadow='0px 0px 5px 0px #DA70D6'>
+                <Input
+
+                    width='50%'
+                    value={val}
+                    onChange={(e) => setVal(e.target.value)}
+                    placeholder="26"
+                />
+                <Button m='3'
+                    onClick={() => {
+                        setSearchValue(val);
+                        setSize(1)
+                    }}
+                    colorScheme='teal' variant='solid'
+                    isLoading={isValidating}
+                    loadingText='Loading' spinnerPlacement='start'
+                >
+                    SEARCH
+                </Button>
+                <Button m='3'
+                    onClick={() => {
+                        setSearchValue(null)
+                        setSize(1)
+                    }}
+                    colorScheme='teal' variant='solid'
+                >
+                    Go to last profile
+                </Button>
+            </Flex>
             <Wrap spacing='5px' align='center' justify='center'>
                 {results &&
                     results.map(
