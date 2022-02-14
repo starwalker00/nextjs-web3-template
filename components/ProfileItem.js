@@ -9,7 +9,7 @@ const defaultImageURI = 'lens-protocol.png';
 async function isReachable(imageURI) {
     let isReachable = false;
     try {
-        console.log(`axios.get : ${JSON.stringify(imageURI)}`)
+        // console.log(`axios.get : ${JSON.stringify(imageURI)}`)
         await axios.get(imageURI, { withCredentials: false });
         isReachable = true;
         // in the future, test if it really is an image
@@ -18,7 +18,7 @@ async function isReachable(imageURI) {
         {
             isReachable = true;
         }
-        console.log(`imageURI unreachable : ${imageURI}`)
+        // console.log(`imageURI unreachable : ${imageURI}`)
         // console.log(`error : ${JSON.stringify(error)}`)
     }
     return isReachable
