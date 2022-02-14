@@ -26,10 +26,12 @@ const defaultImageURI = 'lens-protocol.png';
 
 function mySanitizer(suspectURL) {
     let cleanURL = sanitizeUrl(suspectURL);
-    if (!cleanURL.toLowerCase().startsWith('https://'))
-        return defaultImageURI
-    else {
+    // basic allow list from the start of the string
+    if (cleanURL.toLowerCase().startsWith('https://')) {
         return cleanURL
+    }
+    else {
+        return defaultImageURI
     }
 }
 
