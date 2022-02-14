@@ -2,8 +2,10 @@ import { Container, Box, Heading, Text, Link } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import Head from 'next/head'
 import ProfileList from '../components/ProfileList'
+import { addresses, abis } from '../contracts';
+import { ethers } from 'ethers';
 
-export default function Home() {
+export default function Home({ fallbackData }) {
   return (
     <Container maxWidth='container.lg' m="20px auto">
       <Head>
@@ -22,7 +24,38 @@ export default function Home() {
           </Link>
         </Text>
       </Box>
-      <ProfileList />
+      <ProfileList fallbackData={fallbackData} />
     </Container >
   )
+}
+
+export async function getStaticProps() {
+  // `getStaticProps` is executed on the server side.
+  const provider = new ethers.providers.AlchemyProvider("maticmum");
+  const lensHub = new ethers.Contract(addresses.lensHubProxy, abis.lensHubProxy, provider);
+  const profilePerCall = 9;
+  let profileCount = await lensHub.totalSupply();
+  let profile;
+  let profiles = [];
+  let cursor = profileCount.toNumber()
+  for (let profileId = cursor; profileId > cursor - profilePerCall; profileId--) {
+    if (profileId > 0) {
+      profile = await lensHub.getProfile(profileId);
+      profile = [profileId, ...profile]
+      profile[1] = profile[1].toNumber(); // convert toNumber to properly serialize when passing props in fallbackData
+      profiles.push(profile);
+    } else {
+      break;
+    }
+  }
+  // console.log(`fallbackData profiles  : ${JSON.stringify(profiles)}`)
+  return {
+    props: {
+      fallbackData: [profiles],
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 10, // In seconds
+  }
 }

@@ -5,6 +5,7 @@ import useSWR from 'swr'
 import ProfileItemPublicationJSONModal from '../components/ProfileItemPublicationJSONModal'
 import { Grid, GridItem } from '@chakra-ui/react'
 import { sanitizeUrl } from '@braintree/sanitize-url'
+import { ethers } from 'ethers';
 
 import {
     Modal,
@@ -26,8 +27,10 @@ function ProfileItemPublicationListModal({ profile }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     let profileId = profile[0];
     let handle = profile[4];
-
-    let numberOfPosts = profile[1].toNumber();
+    let numberOfPosts = profile[1];
+    if (ethers.BigNumber.isBigNumber(numberOfPosts)) {
+        numberOfPosts = numberOfPosts.toNumber();
+    }
     let shouldFetch;
     if (numberOfPosts < 1) {
         shouldFetch = false;
@@ -77,7 +80,7 @@ function ProfileItemPublicationListModal({ profile }) {
                     <ModalCloseButton colorScheme='teal' variant='solid' />
                     <ModalBody>
                         {error &&
-                            <Text overflow='auto'>error{console.log(error)}</Text>
+                            <Text overflow='auto'>error{console.log(JSON.stringify(error))}</Text>
                         }
                         <Grid direction='column'>
                             {data &&
