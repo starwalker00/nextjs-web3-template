@@ -33,11 +33,12 @@ export async function getStaticProps() {
   // `getStaticProps` is executed on the server side.
   const provider = new ethers.providers.AlchemyProvider("maticmum");
   const lensHub = new ethers.Contract(addresses.lensHubProxy, abis.lensHubProxy, provider);
-  const profilePerCall = 9;
-  let profileCount = await lensHub.totalSupply();
+  let profilePerCall = 9;
+  let profileTotalSupply = await lensHub.totalSupply();
   let profile;
   let profiles = [];
-  let cursor = profileCount.toNumber()
+  let cursor = profileTotalSupply.toNumber()
+  profilePerCall = profilePerCall > profileTotalSupply.toNumber() ? profileTotalSupply.toNumber() : profilePerCall;
   for (let profileId = cursor; profileId > cursor - profilePerCall; profileId--) {
     if (profileId > 0) {
       profile = await lensHub.getProfile(profileId);

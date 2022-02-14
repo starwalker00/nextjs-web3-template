@@ -77,6 +77,7 @@ export default function ProfileList({ fallbackData }) {
     const results = data ? [].concat(...data) : [];
     return (
         <>
+            {/* <Box onLoad={() => setSize(size + 1)} d='none'></Box> */}
             <Wrap spacing='5px' align='center' justify='center'>
                 {results &&
                     results.map(
