@@ -6,7 +6,7 @@ import { Spinner } from '@chakra-ui/react'
 import { ethers } from 'ethers';
 import { useState } from 'react';
 
-const PAGE_SIZE = 9
+const PAGE_SIZE = 20
 const hasStrings = (input) => {
     let regExp = /[a-zA-Z]/g
     return regExp.test(input)

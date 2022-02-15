@@ -38,7 +38,7 @@ export async function getStaticProps() {
   // `getStaticProps` is executed on the server side.
   const provider = new ethers.providers.AlchemyProvider("maticmum");
   const lensHub = new ethers.Contract(addresses.lensHubProxy, abis.lensHubProxy, provider);
-  let pageSize = 9;
+  let pageSize = 20;
   let profileTotalSupply = await lensHub.totalSupply();
   let profile;
   let profiles = [];
